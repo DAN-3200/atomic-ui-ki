@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atomic UI Kit — 02 Molecules</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--font-sans:'DM Sans',sans-serif;--font-mono:'JetBrains Mono',monospace}
+    body{font-family:var(--font-sans)}.mono{font-family:var(--font-mono)}
+    .cb{background:#0d0d0d;color:#d4d4d4;font-family:var(--font-mono);font-size:11.5px;line-height:1.75}
+    .cb .tag{color:#7ee787}.cb .at{color:#d2a8ff}.cb .val{color:#a5d6ff}
+    .cb .kw{color:#79c0ff}.cb .cm{color:#6e7681;font-style:italic}.cb .sp{color:#ffa657}
+    .copy-btn{position:absolute;top:10px;right:10px;background:#1e1e1e;color:#6e7681;
+      border:1px solid #30363d;font-family:var(--font-mono);font-size:10px;padding:3px 8px;
+      cursor:pointer;transition:all .15s;user-select:none}
+    .copy-btn:hover{background:#2d2d2d;color:#d4d4d4;border-color:#6e7681}
+    .mol-tag{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:10px;
+      background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;padding:2px 8px}
+    ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:#d4d4d8}
+  </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 antialiased">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-white border-b border-zinc-200">
+  <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-5 h-5 bg-zinc-900 grid place-items-center flex-shrink-0"><div class="w-1.5 h-1.5 bg-green-400"></div></div>
+      <span class="text-sm font-semibold tracking-tight">Atomic UI Kit</span>
+      <span class="mono text-[10px] text-zinc-400 bg-zinc-100 px-1.5 py-0.5">v2.0</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-1 text-xs font-medium">
+      <a href="index.html" class="px-3 py-1.5 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">01 · Atoms</a>
+      <a href="02-molecules.html" class="px-3 py-1.5 bg-zinc-900 text-white">02 · Molecules</a>
+      <a href="03-organisms.html" class="px-3 py-1.5 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">03 · Organisms</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="bg-white border-b border-zinc-200">
+  <div class="max-w-7xl mx-auto px-6 py-14">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <div class="max-w-xl">
+        <div class="mol-tag mb-5">molecule · nível 2 de 3</div>
+        <h1 class="text-5xl font-bold tracking-tight leading-none mb-4">Molecules</h1>
+        <p class="text-zinc-500 text-sm leading-relaxed">Combinações simples de átomos com propósito único. Uma molécula resolve exatamente um problema de UX. Copie a unidade inteira.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 text-xs mono">
+        <span class="border border-zinc-200 px-2.5 py-1 text-zinc-500">Átomos combinados</span>
+        <span class="border border-zinc-200 px-2.5 py-1 text-zinc-500">Propósito único</span>
+        <span class="border border-zinc-200 px-2.5 py-1 text-zinc-500">Zero JS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-16 space-y-20">
+
+<!-- M01 FIELD -->
+<section id="field">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M01</span>
+    <div><h2 class="text-2xl font-bold mb-1">Field</h2>
+    <p class="text-sm text-zinc-500">A unidade fundamental de formulário: <strong>Label + Input + Hint/Error</strong>. Base para todos os campos.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-5">
+      <div class="flex flex-col gap-1">
+        <label for="f1" class="text-sm font-medium text-zinc-700">Nome completo <span class="text-red-500" aria-hidden="true">*</span></label>
+        <input id="f1" type="text" placeholder="Ex: Ana Barros" required class="w-full px-3 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 placeholder:text-zinc-400 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition-colors"/>
+        <p class="text-xs text-zinc-500">Como aparece no seu documento oficial.</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="f2" class="text-sm font-medium text-zinc-700">Empresa <span class="text-zinc-400 text-xs font-normal ml-1">(opcional)</span></label>
+        <input id="f2" type="text" placeholder="Ex: Acme Corp" class="w-full px-3 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 placeholder:text-zinc-400 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition-colors"/>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="f3" class="text-sm font-medium text-zinc-700">E-mail <span class="text-red-500" aria-hidden="true">*</span></label>
+        <input id="f3" type="email" value="email-invalido" aria-invalid="true" aria-describedby="f3-err" class="w-full px-3 py-2 text-sm text-zinc-900 bg-white border border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-colors"/>
+        <p id="f3-err" role="alert" class="text-xs text-red-600 flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Insira um e-mail válido, ex: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abcac5caebcec6dbd9ced8ca85c8c4c6">[email&#160;protected]</a>
+        </p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="f4" class="text-sm font-medium text-zinc-700">Bio</label>
+        <textarea id="f4" rows="3" maxlength="160" placeholder="Fale sobre você..." class="w-full px-3 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 placeholder:text-zinc-400 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition-colors resize-none"></textarea>
+        <div class="flex justify-between"><p class="text-xs text-zinc-500">Aparece no seu perfil.</p><p class="mono text-xs text-zinc-400">0 / 160</p></div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Field — obrigatório --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex flex-col gap-1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;label</span> <span class="at">for</span>=<span class="val">"campo"</span>
+         <span class="at">class</span>=<span class="val">"text-sm font-medium text-zinc-700"</span><span class="tag">&gt;</span>
+    Rótulo
+    <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"text-red-500"</span>
+           <span class="at">aria-hidden</span>=<span class="val">"true"</span><span class="tag">&gt;</span>*<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="at">id</span>=<span class="val">"campo"</span> <span class="at">type</span>=<span class="val">"text"</span> <span class="at">required</span>
+         <span class="at">class</span>=<span class="val">"w-full px-3 py-2 text-sm
+                text-zinc-900 bg-white
+                border border-zinc-300
+                placeholder:text-zinc-400
+                hover:border-zinc-400
+                focus:outline-none focus:ring-2
+                focus:ring-zinc-900 focus:border-transparent
+                transition-colors"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-zinc-500"</span><span class="tag">&gt;</span>Hint.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Campo com erro --&gt;</span>
+<span class="tag">&lt;input</span> <span class="at">aria-invalid</span>=<span class="val">"true"</span>
+       <span class="at">aria-describedby</span>=<span class="val">"msg"</span>
+       <span class="at">class</span>=<span class="val">"... border-red-500 focus:ring-red-500"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;p</span> <span class="at">id</span>=<span class="val">"msg"</span> <span class="at">role</span>=<span class="val">"alert"</span>
+   <span class="at">class</span>=<span class="val">"text-xs text-red-600
+          flex items-center gap-1.5"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- ícone SVG 14×14 --&gt;</span>
+  Mensagem de erro.
+<span class="tag">&lt;/p&gt;</span>
+
+<span class="cm">&lt;!-- Textarea com contador --&gt;</span>
+<span class="tag">&lt;textarea</span> <span class="at">maxlength</span>=<span class="val">"160"</span> <span class="sp">...</span><span class="tag">&gt;&lt;/textarea&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex justify-between"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-zinc-500"</span><span class="tag">&gt;</span>Hint.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"mono text-xs text-zinc-400"</span><span class="tag">&gt;</span>0 / 160<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M02 SEARCH BAR -->
+<section id="search">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M02</span>
+    <div><h2 class="text-2xl font-bold mb-1">Search Bar</h2>
+    <p class="text-sm text-zinc-500"><strong>Input + ícone + botão</strong>. Use <code class="mono text-xs bg-zinc-100 px-1">role="search"</code> no wrapper e <code class="mono text-xs bg-zinc-100 px-1">type="search"</code> no input.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-6">
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-3">Inline (input + botão)</p>
+        <div role="search" class="flex">
+          <div class="relative flex-1">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/></svg>
+            </div>
+            <input type="search" placeholder="Buscar produtos..." aria-label="Buscar" class="w-full pl-9 pr-3 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 border-r-0 placeholder:text-zinc-400 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent focus:z-10 transition-colors"/>
+          </div>
+          <button type="submit" class="flex-shrink-0 px-4 py-2 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">Buscar</button>
+        </div>
+      </div>
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-3">Standalone com atalho</p>
+        <div role="search" class="relative">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-zinc-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/></svg>
+          </div>
+          <input type="search" placeholder="Buscar... (⌘K)" aria-label="Buscar" class="w-full pl-9 pr-16 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 placeholder:text-zinc-400 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition-colors"/>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+            <span class="mono text-[10px] border border-zinc-200 bg-zinc-100 text-zinc-400 px-1.5 py-0.5">⌘K</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-3">Large / Hero</p>
+        <div role="search" class="flex border border-zinc-300 hover:border-zinc-400 bg-white focus-within:ring-2 focus-within:ring-zinc-900 focus-within:border-transparent transition-colors">
+          <div class="flex items-center pl-4 text-zinc-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/></svg>
+          </div>
+          <input type="search" placeholder="O que você está buscando?" aria-label="Buscar" class="flex-1 px-3 py-3 text-base text-zinc-900 bg-transparent placeholder:text-zinc-400 focus:outline-none"/>
+          <button type="submit" class="flex-shrink-0 m-1.5 px-4 py-1.5 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-700 transition-colors">Buscar</button>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Inline --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">role</span>=<span class="val">"search"</span> <span class="at">class</span>=<span class="val">"flex"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"relative flex-1"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"pointer-events-none absolute
+                inset-y-0 left-0 pl-3
+                flex items-center text-zinc-400"</span><span class="tag">&gt;</span>
+      <span class="cm">&lt;!-- SVG search 16×16 --&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;input</span> <span class="at">type</span>=<span class="val">"search"</span> <span class="at">aria-label</span>=<span class="val">"Buscar"</span>
+           <span class="at">class</span>=<span class="val">"w-full pl-9 pr-3 py-2 text-sm
+                  border border-zinc-300 border-r-0
+                  focus:ring-2 focus:ring-zinc-900
+                  focus:outline-none focus:z-10
+                  focus:border-transparent
+                  transition-colors"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"submit"</span>
+          <span class="at">class</span>=<span class="val">"flex-shrink-0 px-4 py-2
+                 bg-zinc-900 text-white text-sm
+                 hover:bg-zinc-700 transition-colors
+                 focus:outline-none focus:ring-2
+                 focus:ring-zinc-900 focus:ring-offset-2"</span><span class="tag">&gt;</span>
+    Buscar
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Standalone com atalho --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">role</span>=<span class="val">"search"</span> <span class="at">class</span>=<span class="val">"relative"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- ícone esquerda: pl-9 --&gt;</span>
+  <span class="tag">&lt;input</span> <span class="at">class</span>=<span class="val">"... pl-9 pr-16"</span><span class="tag">/&gt;</span>
+  <span class="cm">&lt;!-- badge ⌘K direita --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"pointer-events-none absolute
+              inset-y-0 right-0 pr-3
+              flex items-center"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"mono text-[10px] border
+               border-zinc-200 bg-zinc-100
+               text-zinc-400 px-1.5 py-0.5"</span><span class="tag">&gt;</span>⌘K<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M03 ALERT -->
+<section id="alert">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M03</span>
+    <div><h2 class="text-2xl font-bold mb-1">Alert / Banner</h2>
+    <p class="text-sm text-zinc-500"><strong>Ícone + Título + Mensagem</strong>. Use <code class="mono text-xs bg-zinc-100 px-1">role="alert"</code> para urgentes, <code class="mono text-xs bg-zinc-100 px-1">role="status"</code> para informativos.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-3">
+      <div role="alert" class="flex gap-3 p-4 bg-green-50 border border-green-200">
+        <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><p class="text-sm font-semibold text-green-800">Salvo com sucesso</p><p class="text-xs text-green-700 mt-0.5">Suas alterações foram aplicadas e estão visíveis.</p></div>
+      </div>
+      <div role="alert" class="flex gap-3 p-4 bg-yellow-50 border border-yellow-200">
+        <svg class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        <div><p class="text-sm font-semibold text-yellow-800">Atenção necessária</p><p class="text-xs text-yellow-700 mt-0.5">Verifique os campos marcados antes de prosseguir.</p></div>
+      </div>
+      <div role="alert" class="flex gap-3 p-4 bg-red-50 border border-red-200">
+        <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="flex-1"><p class="text-sm font-semibold text-red-800">Erro ao salvar</p><p class="text-xs text-red-700 mt-0.5">Não foi possível conectar ao servidor. Tente novamente.</p></div>
+        <button type="button" aria-label="Fechar" class="flex-shrink-0 text-red-400 hover:text-red-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div role="status" class="flex gap-3 p-4 bg-blue-50 border border-blue-200">
+        <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div><p class="text-sm font-semibold text-blue-800">Manutenção programada</p><p class="text-xs text-blue-700 mt-0.5">O sistema ficará indisponível no dia 25/03 das 02h às 04h.</p></div>
+      </div>
+      <div class="flex gap-3 p-4 bg-zinc-50 border border-zinc-200">
+        <svg class="w-5 h-5 text-zinc-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+        <div class="flex-1"><p class="text-sm font-semibold text-zinc-800">Novo recurso disponível</p><p class="text-xs text-zinc-600 mt-0.5">Experimente a nova tela de relatórios.</p></div>
+        <button type="button" class="flex-shrink-0 text-sm text-zinc-700 font-medium hover:text-zinc-900 underline underline-offset-2 whitespace-nowrap transition-colors">Ver agora</button>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Sucesso --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">role</span>=<span class="val">"alert"</span>
+     <span class="at">class</span>=<span class="val">"flex gap-3 p-4
+            bg-green-50 border border-green-200"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;svg</span> <span class="at">class</span>=<span class="val">"w-5 h-5 text-green-600
+               flex-shrink-0 mt-0.5"</span> <span class="sp">...</span><span class="tag">&gt;&lt;/svg&gt;</span>
+  <span class="tag">&lt;div&gt;</span>
+    <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-sm font-semibold text-green-800"</span><span class="tag">&gt;</span>
+      Título
+    <span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-green-700 mt-0.5"</span><span class="tag">&gt;</span>
+      Mensagem.
+    <span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Mapa de cores por variante:
+  sucesso  → green-50 / green-200 / green-800/700
+  warning  → yellow-50 / yellow-200 / yellow-800/700
+  erro     → red-50 / red-200 / red-800/700
+  info     → blue-50 / blue-200 / blue-800/700
+  neutro   → zinc-50 / zinc-200 / zinc-800/600
+--&gt;</span>
+
+<span class="cm">&lt;!-- Com botão fechar --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex gap-3 p-4 ..."</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- ícone + div de conteúdo flex-1 --&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"button"</span>
+          <span class="at">aria-label</span>=<span class="val">"Fechar alerta"</span>
+          <span class="at">class</span>=<span class="val">"flex-shrink-0 text-*-400
+                 hover:text-*-700 transition-colors"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG X 16×16 --&gt;</span>
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M04 CARD -->
+<section id="card">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M04</span>
+    <div><h2 class="text-2xl font-bold mb-1">Card</h2>
+    <p class="text-sm text-zinc-500">Container semântico de agrupamento. Variações de estrutura interna para diferentes densidades de informação.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-4">
+      <div class="border border-zinc-200 bg-white p-5">
+        <p class="text-sm font-semibold text-zinc-900 mb-1">Card simples</p>
+        <p class="text-xs text-zinc-500 leading-relaxed">Agrupa informações relacionadas numa unidade visual coesa.</p>
+      </div>
+      <div class="border border-zinc-200 bg-white overflow-hidden">
+        <div class="px-5 py-3 border-b border-zinc-100 flex items-center justify-between">
+          <p class="text-sm font-semibold text-zinc-900">Com cabeçalho</p>
+          <button type="button" class="text-xs text-zinc-500 hover:text-zinc-900 font-medium transition-colors">Editar</button>
+        </div>
+        <div class="p-5"><p class="text-xs text-zinc-500 leading-relaxed">Use o cabeçalho para título e ações contextuais. O corpo recebe padding padrão p-5.</p></div>
+      </div>
+      <div class="border border-zinc-200 bg-white overflow-hidden">
+        <div class="p-5"><p class="text-sm font-semibold text-zinc-900 mb-1">Com rodapé</p><p class="text-xs text-zinc-500 leading-relaxed">O rodapé abriga as ações primárias relacionadas ao conteúdo.</p></div>
+        <div class="px-5 py-3 border-t border-zinc-100 bg-zinc-50 flex items-center gap-2">
+          <button type="button" class="inline-flex items-center px-3 py-1.5 bg-zinc-900 text-white text-xs font-medium hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">Confirmar</button>
+          <button type="button" class="inline-flex items-center px-3 py-1.5 text-zinc-600 text-xs font-medium hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">Cancelar</button>
+        </div>
+      </div>
+      <a href="#" class="block border border-zinc-200 bg-white p-5 hover:border-zinc-400 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors group">
+        <div class="flex items-center justify-between mb-1">
+          <p class="text-sm font-semibold text-zinc-900">Card clicável</p>
+          <svg class="w-4 h-4 text-zinc-400 group-hover:text-zinc-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </div>
+        <p class="text-xs text-zinc-500 leading-relaxed">Todo o card é interativo. Ideal para listagens navegáveis.</p>
+      </a>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Simples --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border border-zinc-200 bg-white p-5"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-sm font-semibold text-zinc-900 mb-1"</span><span class="tag">&gt;</span>
+    Título
+  <span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-zinc-500 leading-relaxed"</span><span class="tag">&gt;</span>
+    Conteúdo.
+  <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Com header + footer --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border border-zinc-200 bg-white
+           overflow-hidden"</span><span class="tag">&gt;</span>
+
+  <span class="cm">&lt;!-- Header --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"px-5 py-3 border-b border-zinc-100
+              flex items-center justify-between"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-sm font-semibold"</span><span class="tag">&gt;</span>Título<span class="tag">&lt;/p&gt;</span>
+    <span class="cm">&lt;!-- ação opcional --&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="cm">&lt;!-- Body --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"p-5"</span><span class="tag">&gt;</span><span class="cm">&lt;!-- conteúdo --&gt;</span><span class="tag">&lt;/div&gt;</span>
+
+  <span class="cm">&lt;!-- Footer --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"px-5 py-3 border-t border-zinc-100
+              bg-zinc-50 flex items-center gap-2"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- botões de ação --&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Card clicável --&gt;</span>
+<span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+   <span class="at">class</span>=<span class="val">"block border border-zinc-200 bg-white p-5
+          hover:border-zinc-400 hover:bg-zinc-50
+          focus:outline-none focus:ring-2
+          focus:ring-zinc-900 focus:ring-offset-2
+          transition-colors group"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- conteúdo + chevron com group-hover --&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M05 STAT CARD -->
+<section id="statcard">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M05</span>
+    <div><h2 class="text-2xl font-bold mb-1">Stat Card</h2>
+    <p class="text-sm text-zinc-500"><strong>Ícone + Label + Valor + Tendência</strong>. Para dashboards e resumos de métricas.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="border border-zinc-200 bg-white p-5">
+          <p class="text-xs font-medium text-zinc-500 mb-2">Receita total</p>
+          <p class="text-2xl font-bold text-zinc-900 mb-1">R$ 48.200</p>
+          <p class="text-xs flex items-center gap-1 text-green-600">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            +12,4% vs. mês anterior
+          </p>
+        </div>
+        <div class="border border-zinc-200 bg-white p-5">
+          <p class="text-xs font-medium text-zinc-500 mb-2">Novos usuários</p>
+          <p class="text-2xl font-bold text-zinc-900 mb-1">1.284</p>
+          <p class="text-xs flex items-center gap-1 text-red-600">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17H5m0 0v-8m0 8l8-8 4 4 6-6"/></svg>
+            -3,2% vs. mês anterior
+          </p>
+        </div>
+        <div class="border border-zinc-200 bg-white p-5">
+          <div class="flex items-start justify-between mb-2">
+            <p class="text-xs font-medium text-zinc-500">Taxa de conversão</p>
+            <div class="w-7 h-7 bg-blue-50 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+          </div>
+          <p class="text-2xl font-bold text-zinc-900 mb-1">3,6%</p>
+          <p class="text-xs text-zinc-400">Sem variação</p>
+        </div>
+        <div class="border border-zinc-200 bg-white p-5">
+          <p class="text-xs font-medium text-zinc-500 mb-2">Tickets abertos</p>
+          <p class="text-2xl font-bold text-zinc-900 mb-1">47</p>
+          <div class="flex items-center gap-1.5">
+            <span class="inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-medium bg-red-50 text-red-700 border border-red-100">
+              <span class="w-1 h-1 rounded-full bg-red-500"></span>12 urgentes
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border border-zinc-200 bg-white p-5"</span><span class="tag">&gt;</span>
+
+  <span class="cm">&lt;!-- Label --&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs font-medium text-zinc-500 mb-2"</span><span class="tag">&gt;</span>
+    Receita total
+  <span class="tag">&lt;/p&gt;</span>
+
+  <span class="cm">&lt;!-- Valor --&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-2xl font-bold text-zinc-900 mb-1"</span><span class="tag">&gt;</span>
+    R$ 48.200
+  <span class="tag">&lt;/p&gt;</span>
+
+  <span class="cm">&lt;!-- Tendência positiva --&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs flex items-center gap-1
+           text-green-600"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG trend-up 14×14 --&gt;</span>
+    +12,4% vs. mês anterior
+  <span class="tag">&lt;/p&gt;</span>
+
+  <span class="cm">&lt;!-- Tendência negativa --&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs flex items-center gap-1
+           text-red-600"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG trend-down 14×14 --&gt;</span>
+    -3,2% vs. mês anterior
+  <span class="tag">&lt;/p&gt;</span>
+
+  <span class="cm">&lt;!-- Ícone decorativo (opcional) --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"w-7 h-7 bg-blue-50
+           flex items-center justify-center"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG 14×14 text-blue-600 --&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M06 DROPDOWN MENU -->
+<section id="dropdown">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M06</span>
+    <div><h2 class="text-2xl font-bold mb-1">Dropdown Menu</h2>
+    <p class="text-sm text-zinc-500">Estrutura visual do menu suspenso. Adicione <code class="mono text-xs bg-zinc-100 px-1">aria-expanded</code> e toggle via JS da sua stack.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 grid-lines">
+      <div class="flex flex-wrap gap-12 items-start">
+        <!-- Menu aberto simples -->
+        <div class="relative">
+          <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-zinc-300 text-sm font-medium hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors" aria-expanded="true">
+            Opções
+            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-48 bg-white border border-zinc-200 shadow-lg z-10">
+            <div class="py-1">
+              <a href="#" class="flex items-center gap-2.5 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 transition-colors">
+                <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                Editar
+              </a>
+              <a href="#" class="flex items-center gap-2.5 px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 transition-colors">
+                <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                Duplicar
+              </a>
+              <hr class="my-1 border-zinc-100" />
+              <a href="#" class="flex items-center gap-2.5 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                Excluir
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Menu com grupos -->
+        <div class="relative">
+          <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-zinc-300 text-sm font-medium hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors" aria-expanded="true">
+            Conta
+            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute top-full left-0 mt-1 w-52 bg-white border border-zinc-200 shadow-lg z-10">
+            <div class="px-4 py-3 border-b border-zinc-100">
+              <p class="text-sm font-semibold text-zinc-900">Ana Barros</p>
+              <p class="text-xs text-zinc-500 truncate"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2d3dcd3f2d7dfc2c0d7c1d39cd1dddf">[email&#160;protected]</a></p>
+            </div>
+            <div class="py-1">
+              <p class="px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-zinc-400">Configurações</p>
+              <a href="#" class="flex px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 transition-colors">Perfil</a>
+              <a href="#" class="flex px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 transition-colors">Segurança</a>
+            </div>
+            <hr class="border-zinc-100" />
+            <div class="py-1">
+              <a href="#" class="flex px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 transition-colors">Sair</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Trigger --&gt;</span>
+<span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"button"</span>
+        <span class="at">aria-expanded</span>=<span class="val">"false"</span>
+        <span class="at">aria-haspopup</span>=<span class="val">"menu"</span>
+        <span class="at">class</span>=<span class="val">"inline-flex items-center gap-2
+               px-4 py-2 bg-white text-sm font-medium
+               border border-zinc-300
+               hover:bg-zinc-50 transition-colors
+               focus:outline-none focus:ring-2
+               focus:ring-zinc-900 focus:ring-offset-2"</span><span class="tag">&gt;</span>
+  Opções
+  <span class="cm">&lt;!-- SVG chevron-down --&gt;</span>
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="cm">&lt;!-- Panel (mostrar/ocultar via JS) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">role</span>=<span class="val">"menu"</span>
+     <span class="at">class</span>=<span class="val">"absolute top-full left-0 mt-1
+            w-48 bg-white border border-zinc-200
+            shadow-lg z-10"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"py-1"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span> <span class="at">role</span>=<span class="val">"menuitem"</span>
+       <span class="at">class</span>=<span class="val">"flex items-center gap-2.5
+              px-4 py-2 text-sm text-zinc-700
+              hover:bg-zinc-100 hover:text-zinc-900
+              transition-colors"</span><span class="tag">&gt;</span>
+      <span class="cm">&lt;!-- SVG ícone 16×16 --&gt;</span>
+      Item
+    <span class="tag">&lt;/a&gt;</span>
+
+    <span class="cm">&lt;!-- Separador --&gt;</span>
+    <span class="tag">&lt;hr</span> <span class="at">class</span>=<span class="val">"my-1 border-zinc-100"</span> <span class="tag">/&gt;</span>
+
+    <span class="cm">&lt;!-- Item destrutivo --&gt;</span>
+    <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span> <span class="at">role</span>=<span class="val">"menuitem"</span>
+       <span class="at">class</span>=<span class="val">"flex items-center gap-2.5
+              px-4 py-2 text-sm
+              text-red-600 hover:bg-red-50
+              transition-colors"</span><span class="tag">&gt;</span>
+      Excluir
+    <span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Grupo com label --&gt;</span>
+<span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"px-4 py-1.5 text-[10px] font-semibold
+         uppercase tracking-widest text-zinc-400"</span><span class="tag">&gt;</span>
+  Grupo
+<span class="tag">&lt;/p&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M07 PAGINATION -->
+<section id="pagination">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M07</span>
+    <div><h2 class="text-2xl font-bold mb-1">Pagination</h2>
+    <p class="text-sm text-zinc-500"><strong>Prev + Páginas + Next</strong>. Use <code class="mono text-xs bg-zinc-100 px-1">&lt;nav aria-label="Paginação"&gt;</code> e indique a página atual com <code class="mono text-xs bg-zinc-100 px-1">aria-current="page"</code>.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-6">
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-4">Padrão</p>
+        <nav aria-label="Paginação" class="flex items-center gap-1">
+          <a href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-zinc-500 border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Anterior
+          </a>
+          <a href="#" class="inline-flex items-center justify-center w-9 h-9 text-sm text-zinc-500 border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">1</a>
+          <a href="#" class="inline-flex items-center justify-center w-9 h-9 text-sm text-zinc-500 border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">2</a>
+          <a href="#" aria-current="page" class="inline-flex items-center justify-center w-9 h-9 text-sm font-semibold bg-zinc-900 text-white border border-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2">3</a>
+          <a href="#" class="inline-flex items-center justify-center w-9 h-9 text-sm text-zinc-500 border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">4</a>
+          <span class="inline-flex items-center justify-center w-9 h-9 text-sm text-zinc-400">…</span>
+          <a href="#" class="inline-flex items-center justify-center w-9 h-9 text-sm text-zinc-500 border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">12</a>
+          <a href="#" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-zinc-500 border border-zinc-200 hover:border-zinc-400 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">
+            Próxima
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </nav>
+      </div>
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-4">Simples (prev/next)</p>
+        <nav aria-label="Paginação simples" class="flex items-center justify-between">
+          <a href="#" class="inline-flex items-center gap-2 text-sm text-zinc-600 font-medium hover:text-zinc-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Anterior
+          </a>
+          <p class="text-sm text-zinc-500">Página <strong class="text-zinc-900">3</strong> de 12</p>
+          <a href="#" class="inline-flex items-center gap-2 text-sm text-zinc-600 font-medium hover:text-zinc-900 transition-colors">
+            Próxima
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </nav>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="tag">&lt;nav</span> <span class="at">aria-label</span>=<span class="val">"Paginação"</span>
+     <span class="at">class</span>=<span class="val">"flex items-center gap-1"</span><span class="tag">&gt;</span>
+
+  <span class="cm">&lt;!-- Anterior --&gt;</span>
+  <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+     <span class="at">class</span>=<span class="val">"inline-flex items-center gap-1.5
+            px-3 py-1.5 text-sm text-zinc-500
+            border border-zinc-200
+            hover:border-zinc-400 hover:text-zinc-900
+            focus:outline-none focus:ring-2
+            focus:ring-zinc-900 focus:ring-offset-2
+            transition-colors"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG chevron-left --&gt;</span>
+    Anterior
+  <span class="tag">&lt;/a&gt;</span>
+
+  <span class="cm">&lt;!-- Página normal --&gt;</span>
+  <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+     <span class="at">class</span>=<span class="val">"inline-flex items-center justify-center
+            w-9 h-9 text-sm text-zinc-500
+            border border-zinc-200
+            hover:border-zinc-400 hover:text-zinc-900
+            focus:outline-none focus:ring-2
+            focus:ring-zinc-900 focus:ring-offset-2
+            transition-colors"</span><span class="tag">&gt;</span>1<span class="tag">&lt;/a&gt;</span>
+
+  <span class="cm">&lt;!-- Página atual --&gt;</span>
+  <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+     <span class="at">aria-current</span>=<span class="val">"page"</span>
+     <span class="at">class</span>=<span class="val">"inline-flex items-center justify-center
+            w-9 h-9 text-sm font-semibold
+            bg-zinc-900 text-white
+            border border-zinc-900
+            focus:outline-none focus:ring-2
+            focus:ring-zinc-900 focus:ring-offset-2"</span><span class="tag">&gt;</span>3<span class="tag">&lt;/a&gt;</span>
+
+  <span class="cm">&lt;!-- Elipse --&gt;</span>
+  <span class="tag">&lt;span</span> <span class="at">aria-hidden</span>=<span class="val">"true"</span>
+        <span class="at">class</span>=<span class="val">"w-9 h-9 inline-flex items-center
+               justify-center text-sm text-zinc-400"</span><span class="tag">&gt;</span>
+    …
+  <span class="tag">&lt;/span&gt;</span>
+
+<span class="tag">&lt;/nav&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M08 BREADCRUMB -->
+<section id="breadcrumb">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M08</span>
+    <div><h2 class="text-2xl font-bold mb-1">Breadcrumb</h2>
+    <p class="text-sm text-zinc-500">Trilha de navegação. Use <code class="mono text-xs bg-zinc-100 px-1">&lt;nav aria-label="Trilha"&gt;</code> + <code class="mono text-xs bg-zinc-100 px-1">aria-current="page"</code> no último item.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-6">
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-4">Com separador /</p>
+        <nav aria-label="Trilha de navegação">
+          <ol class="flex items-center flex-wrap gap-1 text-sm">
+            <li><a href="#" class="text-zinc-500 hover:text-zinc-900 transition-colors">Início</a></li>
+            <li class="text-zinc-300 select-none">/</li>
+            <li><a href="#" class="text-zinc-500 hover:text-zinc-900 transition-colors">Produtos</a></li>
+            <li class="text-zinc-300 select-none">/</li>
+            <li><a href="#" class="text-zinc-500 hover:text-zinc-900 transition-colors">Eletrônicos</a></li>
+            <li class="text-zinc-300 select-none">/</li>
+            <li><span aria-current="page" class="text-zinc-900 font-medium">Notebooks</span></li>
+          </ol>
+        </nav>
+      </div>
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-4">Com ícone chevron</p>
+        <nav aria-label="Trilha de navegação">
+          <ol class="flex items-center flex-wrap gap-1 text-sm">
+            <li class="flex items-center">
+              <a href="#" class="text-zinc-500 hover:text-zinc-900 transition-colors">Início</a>
+            </li>
+            <li class="flex items-center"><svg class="w-3.5 h-3.5 text-zinc-300 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
+            <li class="flex items-center"><a href="#" class="text-zinc-500 hover:text-zinc-900 transition-colors">Configurações</a></li>
+            <li class="flex items-center"><svg class="w-3.5 h-3.5 text-zinc-300 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></li>
+            <li><span aria-current="page" class="text-zinc-900 font-medium">Segurança</span></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="tag">&lt;nav</span> <span class="at">aria-label</span>=<span class="val">"Trilha de navegação"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;ol</span> <span class="at">class</span>=<span class="val">"flex items-center flex-wrap
+            gap-1 text-sm"</span><span class="tag">&gt;</span>
+
+    <span class="cm">&lt;!-- Item de link --&gt;</span>
+    <span class="tag">&lt;li&gt;</span>
+      <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+         <span class="at">class</span>=<span class="val">"text-zinc-500
+                hover:text-zinc-900
+                transition-colors"</span><span class="tag">&gt;</span>
+        Início
+      <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/li&gt;</span>
+
+    <span class="cm">&lt;!-- Separador (aria-hidden) --&gt;</span>
+    <span class="tag">&lt;li</span> <span class="at">aria-hidden</span>=<span class="val">"true"</span>
+        <span class="at">class</span>=<span class="val">"text-zinc-300 select-none"</span><span class="tag">&gt;</span>
+      /
+    <span class="tag">&lt;/li&gt;</span>
+
+    <span class="cm">&lt;!-- Página atual --&gt;</span>
+    <span class="tag">&lt;li&gt;</span>
+      <span class="tag">&lt;span</span> <span class="at">aria-current</span>=<span class="val">"page"</span>
+            <span class="at">class</span>=<span class="val">"text-zinc-900 font-medium"</span><span class="tag">&gt;</span>
+        Notebooks
+      <span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;/li&gt;</span>
+
+  <span class="tag">&lt;/ol&gt;</span>
+<span class="tag">&lt;/nav&gt;</span>
+
+<span class="cm">&lt;!-- Separador SVG chevron --&gt;</span>
+<span class="tag">&lt;li</span> <span class="at">aria-hidden</span>=<span class="val">"true"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;svg</span> <span class="at">class</span>=<span class="val">"w-3.5 h-3.5 text-zinc-300 mx-1"</span>
+       <span class="sp">...chevron-right...</span><span class="tag">&gt;&lt;/svg&gt;</span>
+<span class="tag">&lt;/li&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M09 TABS -->
+<section id="tabs">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M09</span>
+    <div><h2 class="text-2xl font-bold mb-1">Tabs</h2>
+    <p class="text-sm text-zinc-500">Navegação entre painéis de conteúdo relacionado. Estrutura visual — adicione <code class="mono text-xs bg-zinc-100 px-1">role="tablist/tab/tabpanel"</code> e toggle JS.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-8">
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-4">Underline</p>
+        <div role="tablist" class="flex border-b border-zinc-200">
+          <button role="tab" aria-selected="true" class="px-4 py-2.5 text-sm font-medium text-zinc-900 border-b-2 border-zinc-900 -mb-px focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900">Visão geral</button>
+          <button role="tab" aria-selected="false" class="px-4 py-2.5 text-sm font-medium text-zinc-500 border-b-2 border-transparent hover:text-zinc-700 hover:border-zinc-300 -mb-px focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors">Atividade</button>
+          <button role="tab" aria-selected="false" class="px-4 py-2.5 text-sm font-medium text-zinc-500 border-b-2 border-transparent hover:text-zinc-700 hover:border-zinc-300 -mb-px focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors">Configurações</button>
+          <button role="tab" aria-selected="false" disabled class="px-4 py-2.5 text-sm font-medium text-zinc-300 border-b-2 border-transparent -mb-px cursor-not-allowed">Faturamento</button>
+        </div>
+        <div role="tabpanel" class="pt-4"><p class="text-sm text-zinc-600">Conteúdo da aba ativa.</p></div>
+      </div>
+      <div>
+        <p class="mono text-[10px] uppercase tracking-widest text-zinc-400 font-semibold mb-4">Pill / Filled</p>
+        <div role="tablist" class="flex gap-1 bg-zinc-100 p-1 w-fit">
+          <button role="tab" aria-selected="true" class="px-4 py-1.5 text-sm font-medium bg-white text-zinc-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors">Mensal</button>
+          <button role="tab" aria-selected="false" class="px-4 py-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors">Anual</button>
+          <button role="tab" aria-selected="false" class="px-4 py-1.5 text-sm font-medium text-zinc-500 hover:text-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-1 transition-colors">Bienal</button>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Underline tabs --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">role</span>=<span class="val">"tablist"</span>
+     <span class="at">class</span>=<span class="val">"flex border-b border-zinc-200"</span><span class="tag">&gt;</span>
+
+  <span class="cm">&lt;!-- Tab ativa --&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">role</span>=<span class="val">"tab"</span>
+          <span class="at">aria-selected</span>=<span class="val">"true"</span>
+          <span class="at">aria-controls</span>=<span class="val">"panel-1"</span>
+          <span class="at">class</span>=<span class="val">"px-4 py-2.5 text-sm font-medium
+                 text-zinc-900
+                 border-b-2 border-zinc-900 -mb-px
+                 focus:outline-none focus:ring-2
+                 focus:ring-inset focus:ring-zinc-900"</span><span class="tag">&gt;</span>
+    Visão geral
+  <span class="tag">&lt;/button&gt;</span>
+
+  <span class="cm">&lt;!-- Tab inativa --&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">role</span>=<span class="val">"tab"</span>
+          <span class="at">aria-selected</span>=<span class="val">"false"</span>
+          <span class="at">aria-controls</span>=<span class="val">"panel-2"</span>
+          <span class="at">class</span>=<span class="val">"px-4 py-2.5 text-sm font-medium
+                 text-zinc-500
+                 border-b-2 border-transparent -mb-px
+                 hover:text-zinc-700 hover:border-zinc-300
+                 focus:outline-none focus:ring-2
+                 focus:ring-inset focus:ring-zinc-900
+                 transition-colors"</span><span class="tag">&gt;</span>
+    Atividade
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Painel --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">id</span>=<span class="val">"panel-1"</span> <span class="at">role</span>=<span class="val">"tabpanel"</span>
+     <span class="at">aria-labelledby</span>=<span class="val">"tab-1"</span>
+     <span class="at">class</span>=<span class="val">"pt-4"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- conteúdo da aba --&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Pill tabs --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">role</span>=<span class="val">"tablist"</span>
+     <span class="at">class</span>=<span class="val">"flex gap-1 bg-zinc-100 p-1 w-fit"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- ativa: bg-white shadow-sm --&gt;</span>
+  <span class="cm">&lt;!-- inativa: text-zinc-500 --&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M10 EMPTY STATE -->
+<section id="emptystate">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M10</span>
+    <div><h2 class="text-2xl font-bold mb-1">Empty State</h2>
+    <p class="text-sm text-zinc-500"><strong>Ícone + Título + Descrição + CTA</strong>. Use para listas vazias, resultados nulos e estados de onboarding.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-6">
+      <div class="border border-dashed border-zinc-300 py-12 px-8 text-center">
+        <div class="w-12 h-12 bg-zinc-100 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Nenhum projeto ainda</h3>
+        <p class="text-xs text-zinc-500 mb-5 max-w-xs mx-auto">Crie seu primeiro projeto para começar a organizar seu trabalho.</p>
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Novo projeto
+        </button>
+      </div>
+      <div class="border border-zinc-200 bg-zinc-50 py-10 px-8 text-center">
+        <div class="w-10 h-10 bg-zinc-200 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-5 h-5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/></svg>
+        </div>
+        <h3 class="text-sm font-semibold text-zinc-700 mb-1">Sem resultados</h3>
+        <p class="text-xs text-zinc-500 mb-4">Nenhum item corresponde à sua busca. Tente outros termos.</p>
+        <button type="button" class="text-sm text-zinc-600 font-medium hover:text-zinc-900 underline underline-offset-2 transition-colors">Limpar filtros</button>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Empty state padrão --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border border-dashed border-zinc-300
+           py-12 px-8 text-center"</span><span class="tag">&gt;</span>
+
+  <span class="cm">&lt;!-- Ícone container --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"w-12 h-12 bg-zinc-100
+             flex items-center justify-center
+             mx-auto mb-4"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG 24×24 text-zinc-400 --&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="cm">&lt;!-- Título --&gt;</span>
+  <span class="tag">&lt;h3</span> <span class="at">class</span>=<span class="val">"text-sm font-semibold
+            text-zinc-900 mb-1"</span><span class="tag">&gt;</span>
+    Nenhum item ainda
+  <span class="tag">&lt;/h3&gt;</span>
+
+  <span class="cm">&lt;!-- Descrição --&gt;</span>
+  <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-zinc-500 mb-5
+           max-w-xs mx-auto"</span><span class="tag">&gt;</span>
+    Crie o primeiro para começar.
+  <span class="tag">&lt;/p&gt;</span>
+
+  <span class="cm">&lt;!-- CTA (botão primário ou link) --&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"button"</span>
+          <span class="at">class</span>=<span class="val">"inline-flex items-center gap-2
+                 px-4 py-2 bg-zinc-900 text-white
+                 text-sm font-medium hover:bg-zinc-700
+                 focus:outline-none focus:ring-2
+                 focus:ring-zinc-900 focus:ring-offset-2
+                 transition-colors"</span><span class="tag">&gt;</span>
+    Criar novo
+  <span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M11 ACCORDION -->
+<section id="accordion">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M11</span>
+    <div><h2 class="text-2xl font-bold mb-1">Accordion</h2>
+    <p class="text-sm text-zinc-500">Expansão/colapso de conteúdo. CSS-only via <code class="mono text-xs bg-zinc-100 px-1">&lt;details&gt;/&lt;summary&gt;</code> nativos. Acessível sem JS.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8">
+
+      <!-- Accordion básico -->
+      <div class="border border-zinc-200 divide-y divide-zinc-200">
+
+        <details class="group">
+          <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 transition-colors select-none">
+            <span class="text-sm font-medium text-zinc-900">O que está incluído no plano Pro?</span>
+            <svg class="w-4 h-4 text-zinc-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-4 pt-1">
+            <p class="text-sm text-zinc-600 leading-relaxed">O plano Pro inclui acesso ilimitado a todos os recursos, suporte prioritário via chat, exportação em PDF, API com 10k requisições/mês e histórico de 12 meses.</p>
+          </div>
+        </details>
+
+        <details class="group" open>
+          <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 transition-colors select-none">
+            <span class="text-sm font-medium text-zinc-900">Posso cancelar a qualquer momento?</span>
+            <svg class="w-4 h-4 text-zinc-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-4 pt-1">
+            <p class="text-sm text-zinc-600 leading-relaxed">Sim. Você pode cancelar sua assinatura a qualquer momento sem multa. O acesso permanece ativo até o fim do período pago.</p>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 transition-colors select-none">
+            <span class="text-sm font-medium text-zinc-900">Tem suporte para times?</span>
+            <svg class="w-4 h-4 text-zinc-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-5 pb-4 pt-1">
+            <p class="text-sm text-zinc-600 leading-relaxed">Sim. O plano Enterprise permite múltiplos membros com permissões granulares, SSO e painel de administração centralizado.</p>
+          </div>
+        </details>
+
+        <details class="group opacity-50 pointer-events-none">
+          <summary class="flex items-center justify-between px-5 py-4 cursor-not-allowed list-none select-none">
+            <span class="text-sm font-medium text-zinc-400">Item desabilitado</span>
+            <svg class="w-4 h-4 text-zinc-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+        </details>
+
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Wrapper com borda e divisores --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border border-zinc-200
+           divide-y divide-zinc-200"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;details</span> <span class="at">class</span>=<span class="val">"group"</span><span class="tag">&gt;</span>
+
+    <span class="cm">&lt;!-- Trigger --&gt;</span>
+    <span class="tag">&lt;summary</span> <span class="at">class</span>=<span class="val">"flex items-center
+                     justify-between
+                     px-5 py-4 cursor-pointer
+                     list-none hover:bg-zinc-50
+                     focus-visible:outline-none
+                     focus-visible:ring-2
+                     focus-visible:ring-inset
+                     focus-visible:ring-zinc-900
+                     transition-colors select-none"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"text-sm font-medium text-zinc-900"</span><span class="tag">&gt;</span>
+        Pergunta ou título
+      <span class="tag">&lt;/span&gt;</span>
+
+      <span class="cm">&lt;!-- Chevron que rotaciona --&gt;</span>
+      <span class="tag">&lt;svg</span> <span class="at">class</span>=<span class="val">"w-4 h-4 text-zinc-400
+               flex-shrink-0 transition-transform
+               group-open:rotate-180"</span>
+           <span class="sp">...chevron-down...</span><span class="tag">&gt;&lt;/svg&gt;</span>
+    <span class="tag">&lt;/summary&gt;</span>
+
+    <span class="cm">&lt;!-- Conteúdo expansível --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"px-5 pb-4 pt-1"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-sm text-zinc-600 leading-relaxed"</span><span class="tag">&gt;</span>
+        Resposta ou conteúdo.
+      <span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;/details&gt;</span>
+
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Aberto por padrão: add open --&gt;</span>
+<span class="tag">&lt;details</span> <span class="at">class</span>=<span class="val">"group"</span> <span class="at">open</span><span class="tag">&gt;</span><span class="sp">...</span><span class="tag">&lt;/details&gt;</span>
+
+<span class="cm">&lt;!-- Desabilitado --&gt;</span>
+<span class="tag">&lt;details</span> <span class="at">class</span>=<span class="val">"group opacity-50 pointer-events-none"</span><span class="tag">&gt;</span>
+  <span class="sp">...</span>
+<span class="tag">&lt;/details&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M12 COLLAPSE -->
+<section id="collapse">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M12</span>
+    <div><h2 class="text-2xl font-bold mb-1">Collapse</h2>
+    <p class="text-sm text-zinc-500">Versão visual de colapso único — para painéis e seções retráteis. Mesma base <code class="mono text-xs bg-zinc-100 px-1">&lt;details&gt;</code>, estética diferente do Accordion.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-4">
+
+      <!-- Collapse de seção -->
+      <details class="group border border-zinc-200 bg-white" open>
+        <summary class="flex items-center gap-3 px-4 py-3 cursor-pointer list-none hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 transition-colors select-none">
+          <svg class="w-3.5 h-3.5 text-zinc-400 flex-shrink-0 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <span class="text-sm font-semibold text-zinc-900">Filtros avançados</span>
+          <span class="ml-auto inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium bg-zinc-100 text-zinc-500 mono">3 ativos</span>
+        </summary>
+        <div class="border-t border-zinc-200 px-4 py-4 space-y-3">
+          <div class="flex flex-col gap-1">
+            <label for="col-status" class="text-xs font-medium text-zinc-600">Status</label>
+            <div class="relative">
+              <select id="col-status" class="w-full appearance-none px-3 py-2 pr-9 text-sm text-zinc-900 bg-white border border-zinc-300 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition-colors cursor-pointer">
+                <option>Todos</option><option>Ativo</option><option>Inativo</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-zinc-500"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="col-periodo" class="text-xs font-medium text-zinc-600">Período</label>
+            <input id="col-periodo" type="date" class="w-full px-3 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent transition-colors" />
+          </div>
+          <div class="flex gap-2 pt-1">
+            <button type="button" class="flex-1 inline-flex items-center justify-center px-3 py-1.5 bg-zinc-900 text-white text-xs font-medium hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">Aplicar</button>
+            <button type="button" class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-zinc-600 hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors">Limpar</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- Collapse de código/detalhe -->
+      <details class="group border border-zinc-200 bg-white">
+        <summary class="flex items-center gap-3 px-4 py-3 cursor-pointer list-none hover:bg-zinc-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zinc-900 transition-colors select-none">
+          <svg class="w-3.5 h-3.5 text-zinc-400 flex-shrink-0 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <span class="text-sm font-semibold text-zinc-900">Ver detalhes técnicos</span>
+        </summary>
+        <div class="border-t border-zinc-200 bg-zinc-950 px-4 py-4">
+          <p class="mono text-xs text-zinc-400">POST /api/v2/users<br/>Content-Type: application/json<br/>Authorization: Bearer {token}</p>
+        </div>
+      </details>
+
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Collapse de painel --&gt;</span>
+<span class="tag">&lt;details</span> <span class="at">class</span>=<span class="val">"group border border-zinc-200 bg-white"</span>
+         <span class="at">open</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;summary</span> <span class="at">class</span>=<span class="val">"flex items-center gap-3
+                   px-4 py-3 cursor-pointer
+                   list-none hover:bg-zinc-50
+                   focus-visible:outline-none
+                   focus-visible:ring-2
+                   focus-visible:ring-inset
+                   focus-visible:ring-zinc-900
+                   transition-colors select-none"</span><span class="tag">&gt;</span>
+
+    <span class="cm">&lt;!-- Chevron rotaciona na abertura --&gt;</span>
+    <span class="tag">&lt;svg</span> <span class="at">class</span>=<span class="val">"w-3.5 h-3.5 text-zinc-400
+               flex-shrink-0 transition-transform
+               group-open:rotate-90"</span>
+         <span class="sp">...chevron-right...</span><span class="tag">&gt;&lt;/svg&gt;</span>
+
+    <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"text-sm font-semibold text-zinc-900"</span><span class="tag">&gt;</span>
+      Título da seção
+    <span class="tag">&lt;/span&gt;</span>
+
+    <span class="cm">&lt;!-- Badge opcional (ml-auto) --&gt;</span>
+    <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"ml-auto text-[10px] font-medium
+               bg-zinc-100 text-zinc-500 mono
+               px-1.5 py-0.5"</span><span class="tag">&gt;</span>
+      3 ativos
+    <span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/summary&gt;</span>
+
+  <span class="cm">&lt;!-- Conteúdo --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border-t border-zinc-200 px-4 py-4"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- qualquer conteúdo --&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/details&gt;</span>
+
+<span class="cm">&lt;!-- Diferença Accordion vs Collapse:
+  Accordion → múltiplos itens numa lista
+  Collapse  → painel único retrátil
+  Base técnica: idêntica (&lt;details&gt;)
+  Diferença: contexto de uso e estética
+--&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M13 LIST -->
+<section id="list">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M13</span>
+    <div><h2 class="text-2xl font-bold mb-1">List</h2>
+    <p class="text-sm text-zinc-500">Lista de itens estruturados. Variações para menus, feeds, contatos e seleções. Use <code class="mono text-xs bg-zinc-100 px-1">&lt;ul&gt;/&lt;li&gt;</code> para listas e <code class="mono text-xs bg-zinc-100 px-1">&lt;ol&gt;</code> para ordenadas.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-6">
+
+      <!-- Lista simples -->
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-3">Simples</p>
+        <ul class="border border-zinc-200 divide-y divide-zinc-100">
+          <li class="px-4 py-3 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors">Item de lista simples</li>
+          <li class="px-4 py-3 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors">Segundo item</li>
+          <li class="px-4 py-3 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors">Terceiro item</li>
+          <li class="px-4 py-3 text-sm text-zinc-400 cursor-not-allowed">Item desabilitado</li>
+        </ul>
+      </div>
+
+      <!-- Lista com ícone e metadado -->
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-3">Com ícone + metadado</p>
+        <ul class="border border-zinc-200 divide-y divide-zinc-100">
+          <li>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors group">
+              <div class="w-8 h-8 bg-blue-50 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-zinc-900 truncate">Relatório Q1 2025</p>
+                <p class="text-xs text-zinc-500">Atualizado há 2h · 1.4 MB</p>
+              </div>
+              <svg class="w-4 h-4 text-zinc-300 group-hover:text-zinc-500 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors group">
+              <div class="w-8 h-8 bg-green-50 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-zinc-900 truncate">Dashboard de vendas</p>
+                <p class="text-xs text-zinc-500">Atualizado ontem · 3.2 MB</p>
+              </div>
+              <svg class="w-4 h-4 text-zinc-300 group-hover:text-zinc-500 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Lista de contatos -->
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-3">Contatos / Usuários</p>
+        <ul class="border border-zinc-200 divide-y divide-zinc-100">
+          <li class="flex items-center gap-3 px-4 py-3">
+            <div class="relative w-fit flex-shrink-0">
+              <div class="w-9 h-9 bg-zinc-800 flex items-center justify-center"><span class="text-xs font-semibold text-white">AB</span></div>
+              <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border-2 border-white"></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-zinc-900">Ana Barros</p>
+              <p class="text-xs text-zinc-500 truncate">ana@empresa.com</p>
+            </div>
+            <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-zinc-100 text-zinc-600 border border-zinc-200">Admin</span>
+          </li>
+          <li class="flex items-center gap-3 px-4 py-3">
+            <div class="relative w-fit flex-shrink-0">
+              <div class="w-9 h-9 bg-blue-600 flex items-center justify-center"><span class="text-xs font-semibold text-white">CS</span></div>
+              <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-zinc-300 border-2 border-white"></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-zinc-900">Carlos Silva</p>
+              <p class="text-xs text-zinc-500 truncate">carlos@empresa.com</p>
+            </div>
+            <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-zinc-50 text-zinc-500 border border-zinc-200">Membro</span>
+          </li>
+          <li class="flex items-center gap-3 px-4 py-3 bg-zinc-50">
+            <div class="relative w-fit flex-shrink-0">
+              <div class="w-9 h-9 bg-zinc-300 flex items-center justify-center"><span class="text-xs font-semibold text-zinc-600">MF</span></div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-zinc-500">Maria Ferreira</p>
+              <p class="text-xs text-zinc-400 truncate">maria@empresa.com</p>
+            </div>
+            <span class="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-red-50 text-red-600 border border-red-100">Inativo</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Lista simples --&gt;</span>
+<span class="tag">&lt;ul</span> <span class="at">class</span>=<span class="val">"border border-zinc-200
+         divide-y divide-zinc-100"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;li</span> <span class="at">class</span>=<span class="val">"px-4 py-3 text-sm text-zinc-700
+            hover:bg-zinc-50 transition-colors"</span><span class="tag">&gt;</span>
+    Item
+  <span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="cm">&lt;!-- Item clicável (link) --&gt;</span>
+<span class="tag">&lt;li&gt;</span>
+  <span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+     <span class="at">class</span>=<span class="val">"flex items-center gap-3
+            px-4 py-3
+            hover:bg-zinc-50
+            focus:outline-none focus:ring-2
+            focus:ring-inset focus:ring-zinc-900
+            transition-colors group"</span><span class="tag">&gt;</span>
+
+    <span class="cm">&lt;!-- ícone container --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"w-8 h-8 bg-blue-50
+               flex items-center justify-center
+               flex-shrink-0"</span><span class="tag">&gt;</span>
+      <span class="cm">&lt;!-- SVG --&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cm">&lt;!-- Conteúdo --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex-1 min-w-0"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-sm font-medium
+               text-zinc-900 truncate"</span><span class="tag">&gt;</span>Título<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-zinc-500"</span><span class="tag">&gt;</span>Meta<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cm">&lt;!-- Chevron (direita) --&gt;</span>
+    <span class="tag">&lt;svg</span> <span class="at">class</span>=<span class="val">"w-4 h-4 text-zinc-300
+               group-hover:text-zinc-500
+               flex-shrink-0 transition-colors"</span>
+         <span class="sp">...chevron-right...</span><span class="tag">&gt;&lt;/svg&gt;</span>
+  <span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/li&gt;</span>
+
+<span class="cm">&lt;!-- Item de usuário --&gt;</span>
+<span class="tag">&lt;li</span> <span class="at">class</span>=<span class="val">"flex items-center gap-3 px-4 py-3"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- avatar com dot indicador --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex-1 min-w-0"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-sm font-medium truncate"</span><span class="tag">&gt;</span>Nome<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p</span> <span class="at">class</span>=<span class="val">"text-xs text-zinc-500 truncate"</span><span class="tag">&gt;</span>
+      email
+    <span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="cm">&lt;!-- badge role --&gt;</span>
+<span class="tag">&lt;/li&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- M14 JOIN / GROUP -->
+<section id="join">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">M14</span>
+    <div><h2 class="text-2xl font-bold mb-1">Join / Group</h2>
+    <p class="text-sm text-zinc-500">Agrupa átomos em linha removendo espaços e fundindo bordas. Padrão para toolbars, segmented controls, input com prefixo/sufixo e botões relacionados.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-8">
+
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Botões agrupados</p>
+        <div class="flex">
+          <button type="button" class="inline-flex items-center px-4 py-2 bg-white text-zinc-700 text-sm font-medium border border-zinc-300 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors -mr-px relative z-0 hover:z-10">Esquerda</button>
+          <button type="button" class="inline-flex items-center px-4 py-2 bg-zinc-900 text-white text-sm font-medium border border-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 -mr-px relative z-0">Centro</button>
+          <button type="button" class="inline-flex items-center px-4 py-2 bg-white text-zinc-700 text-sm font-medium border border-zinc-300 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors relative z-0 hover:z-10">Direita</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Segmented control (toggle)</p>
+        <div class="flex border border-zinc-300">
+          <button type="button" class="flex-1 px-4 py-2 text-sm font-medium bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors">Lista</button>
+          <button type="button" class="flex-1 px-4 py-2 text-sm font-medium bg-white text-zinc-600 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors border-l border-zinc-300">Grade</button>
+          <button type="button" class="flex-1 px-4 py-2 text-sm font-medium bg-white text-zinc-600 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors border-l border-zinc-300">Kanban</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Input com prefixo</p>
+        <div class="flex border border-zinc-300 focus-within:ring-2 focus-within:ring-zinc-900 focus-within:border-transparent transition-colors">
+          <span class="inline-flex items-center px-3 bg-zinc-100 text-zinc-500 text-sm border-r border-zinc-300 flex-shrink-0 select-none">https://</span>
+          <input type="text" placeholder="meusite.com" class="flex-1 px-3 py-2 text-sm text-zinc-900 bg-white placeholder:text-zinc-400 focus:outline-none" />
+        </div>
+      </div>
+
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Input com sufixo / addon</p>
+        <div class="flex border border-zinc-300 focus-within:ring-2 focus-within:ring-zinc-900 focus-within:border-transparent transition-colors">
+          <input type="number" placeholder="0,00" class="flex-1 px-3 py-2 text-sm text-zinc-900 bg-white placeholder:text-zinc-400 focus:outline-none" />
+          <span class="inline-flex items-center px-3 bg-zinc-100 text-zinc-500 text-sm border-l border-zinc-300 flex-shrink-0 select-none">BRL</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Input + botão inline</p>
+        <div class="flex">
+          <input type="email" placeholder="seu@email.com" class="flex-1 px-3 py-2 text-sm text-zinc-900 bg-white border border-zinc-300 border-r-0 placeholder:text-zinc-400 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:border-transparent focus:z-10 transition-colors" />
+          <button type="submit" class="flex-shrink-0 px-4 py-2 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 transition-colors border border-zinc-900">Assinar</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Icon group toolbar</p>
+        <div class="flex border border-zinc-200">
+          <button type="button" aria-label="Negrito" class="p-2.5 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors border-r border-zinc-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 12h8a4 4 0 000-8H6v8zm0 0h9a4 4 0 010 8H6v-8z"/></svg>
+          </button>
+          <button type="button" aria-label="Itálico" class="p-2.5 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors border-r border-zinc-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="19" y1="4" x2="10" y2="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="20" x2="5" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="4" x2="9" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button type="button" aria-label="Link" class="p-2.5 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors border-r border-zinc-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+          </button>
+          <button type="button" aria-label="Imagem" class="p-2.5 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-zinc-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Regra: use -mr-px + z-0/z-10 para
+  fundir bordas sem sobreposição --&gt;</span>
+
+<span class="cm">&lt;!-- Botões agrupados --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">class</span>=<span class="val">"... border border-zinc-300
+                 -mr-px relative z-0
+                 hover:z-10"</span><span class="tag">&gt;</span>A<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">class</span>=<span class="val">"... border border-zinc-900
+                 bg-zinc-900 text-white
+                 -mr-px relative z-0"</span><span class="tag">&gt;</span>B<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">class</span>=<span class="val">"... border border-zinc-300
+                 relative z-0 hover:z-10"</span><span class="tag">&gt;</span>C<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Input com prefixo --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex border border-zinc-300
+           focus-within:ring-2
+           focus-within:ring-zinc-900
+           focus-within:border-transparent
+           transition-colors"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"inline-flex items-center px-3
+               bg-zinc-100 text-zinc-500 text-sm
+               border-r border-zinc-300
+               flex-shrink-0 select-none"</span><span class="tag">&gt;</span>
+    https://
+  <span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;input</span> <span class="at">class</span>=<span class="val">"flex-1 px-3 py-2 text-sm
+                bg-white focus:outline-none"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Input + botão inline --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="at">class</span>=<span class="val">"flex-1 px-3 py-2 text-sm
+                border border-zinc-300
+                border-r-0
+                focus:outline-none focus:ring-2
+                focus:ring-zinc-900
+                focus:border-transparent focus:z-10
+                transition-colors"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"submit"</span>
+          <span class="at">class</span>=<span class="val">"flex-shrink-0 px-4 py-2
+                 bg-zinc-900 text-white text-sm
+                 border border-zinc-900
+                 hover:bg-zinc-700 transition-colors"</span><span class="tag">&gt;</span>
+    Enviar
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Toolbar de ícones --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex border border-zinc-200"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"button"</span>
+          <span class="at">aria-label</span>=<span class="val">"Ação"</span>
+          <span class="at">class</span>=<span class="val">"p-2.5 text-zinc-600
+                 hover:bg-zinc-100 hover:text-zinc-900
+                 focus:outline-none focus:ring-2
+                 focus:ring-inset focus:ring-zinc-900
+                 transition-colors
+                 border-r border-zinc-200"</span><span class="tag">&gt;</span>
+    <span class="cm">&lt;!-- SVG 16×16 --&gt;</span>
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-zinc-200 mt-16">
+  <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-5 h-5 bg-zinc-900 grid place-items-center flex-shrink-0"><div class="w-1.5 h-1.5 bg-green-400"></div></div>
+      <span class="mono text-xs text-zinc-500">Atomic UI Kit · 02 Molecules · HTML + Tailwind CSS · Zero JS</span>
+    </div>
+    <div class="flex gap-4 mono text-xs">
+      <a href="index.html" class="text-zinc-400 hover:text-zinc-700 transition-colors">← Atoms</a>
+      <span class="text-zinc-900 font-medium">Molecules</span>
+      <a href="03-organisms.html" class="text-zinc-400 hover:text-zinc-700 transition-colors">Organisms →</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><s
