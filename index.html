@@ -9,20 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root { --font-sans:'DM Sans',sans-serif; --font-mono:'JetBrains Mono',monospace; }
-    body { font-family: var(--font-sans); }
-    .mono { font-family: var(--font-mono); }
-    .cb { background:#0d0d0d; color:#d4d4d4; font-family:var(--font-mono); font-size:11.5px; line-height:1.75; }
-    .cb .tag{color:#7ee787} .cb .at{color:#d2a8ff} .cb .val{color:#a5d6ff}
-    .cb .kw{color:#79c0ff} .cb .cm{color:#6e7681;font-style:italic} .cb .sp{color:#ffa657}
-    .copy-btn { position:absolute;top:10px;right:10px;background:#1e1e1e;color:#6e7681;
+    :root{--font-sans:'DM Sans',sans-serif;--font-mono:'JetBrains Mono',monospace}
+    body{font-family:var(--font-sans)}.mono{font-family:var(--font-mono)}
+    .cb{background:#0d0d0d;color:#d4d4d4;font-family:var(--font-mono);font-size:11.5px;line-height:1.75}
+    .cb .tag{color:#7ee787}.cb .at{color:#d2a8ff}.cb .val{color:#a5d6ff}
+    .cb .kw{color:#79c0ff}.cb .cm{color:#6e7681;font-style:italic}.cb .sp{color:#ffa657}
+    .copy-btn{position:absolute;top:10px;right:10px;background:#1e1e1e;color:#6e7681;
       border:1px solid #30363d;font-family:var(--font-mono);font-size:10px;padding:3px 8px;
-      cursor:pointer;transition:all .15s;user-select:none; }
+      cursor:pointer;transition:all .15s;user-select:none}
     .copy-btn:hover{background:#2d2d2d;color:#d4d4d4;border-color:#6e7681}
-    .atom-tag { display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:10px;
-      background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;padding:2px 8px; }
-    ::-webkit-scrollbar{width:4px;height:4px}
-    ::-webkit-scrollbar-thumb{background:#d4d4d8}
+    .atom-tag{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:10px;
+      background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;padding:2px 8px}
+    ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:#d4d4d8}
   </style>
 </head>
 <body class="bg-zinc-50 text-zinc-900 antialiased">
@@ -37,7 +35,7 @@
       <span class="mono text-[10px] text-zinc-400 bg-zinc-100 px-1.5 py-0.5">v2.1</span>
     </div>
     <nav class="hidden md:flex items-center gap-1 text-xs font-medium">
-      <a href="index.html" class="px-3 py-1.5 bg-zinc-900 text-white transition-colors">01 · Atoms</a>
+      <a href="index.html" aria-current="page" class="px-3 py-1.5 bg-zinc-900 text-white transition-colors">01 · Atoms</a>
       <a href="02-molecules.html" class="px-3 py-1.5 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">02 · Molecules</a>
       <a href="03-organisms.html" class="px-3 py-1.5 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">03 · Organisms</a>
     </nav>
@@ -202,7 +200,7 @@
         <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Estados</p>
         <div class="flex flex-wrap gap-3">
           <button type="button" disabled class="inline-flex items-center px-4 py-2 bg-zinc-900 text-white text-sm font-medium opacity-40 cursor-not-allowed">Disabled</button>
-          <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium opacity-70 cursor-wait">
+          <button type="button" aria-busy="true" class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium opacity-70 cursor-wait">
             <svg class="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
             Loading
           </button>
