@@ -1306,6 +1306,360 @@
   </div>
 </section>
 
+
+<!-- A17 SPINNER -->
+<section id="spinner">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">A17</span>
+    <div><h2 class="text-2xl font-bold mb-1">Spinner</h2><p class="text-sm text-zinc-500">Indicador de carregamento standalone. Use <code class="mono text-xs bg-zinc-100 px-1">aria-label</code> e <code class="mono text-xs bg-zinc-100 px-1">role="status"</code>. Animação via Tailwind <code class="mono text-xs bg-zinc-100 px-1">animate-spin</code>.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-8">
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Tamanhos</p>
+        <div class="flex items-center gap-6">
+          <span role="status" aria-label="Carregando" class="inline-block w-4 h-4 border-2 border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-5 h-5 border-2 border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-6 h-6 border-2 border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-8 h-8 border-[3px] border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-10 h-10 border-4 border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></span>
+        </div>
+      </div>
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Variantes de cor</p>
+        <div class="flex items-center gap-6">
+          <span role="status" aria-label="Carregando" class="inline-block w-6 h-6 border-2 border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-6 h-6 border-2 border-blue-100 border-t-blue-600 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-6 h-6 border-2 border-green-100 border-t-green-600 rounded-full animate-spin"></span>
+          <span role="status" aria-label="Carregando" class="inline-block w-6 h-6 border-2 border-red-100 border-t-red-600 rounded-full animate-spin"></span>
+          <span class="inline-flex w-6 h-6 bg-zinc-900 items-center justify-center">
+            <span role="status" aria-label="Carregando" class="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+          </span>
+        </div>
+      </div>
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Com texto inline</p>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-2.5 text-sm text-zinc-600">
+            <span role="status" aria-label="Carregando" class="inline-block w-4 h-4 border-2 border-zinc-200 border-t-zinc-700 rounded-full animate-spin flex-shrink-0"></span>
+            Carregando dados...
+          </div>
+          <button type="button" disabled aria-busy="true" class="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium opacity-70 cursor-wait w-fit">
+            <span role="status" aria-label="Enviando" class="inline-block w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            Enviando...
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Standalone --&gt;</span>
+<span class="tag">&lt;span</span> <span class="at">role</span>=<span class="val">"status"</span>
+      <span class="at">aria-label</span>=<span class="val">"Carregando"</span>
+      <span class="at">class</span>=<span class="val">"inline-block w-6 h-6
+             border-2 border-zinc-200
+             border-t-zinc-900
+             rounded-full animate-spin"</span><span class="tag">&gt;
+&lt;/span&gt;</span>
+
+<span class="cm">&lt;!-- Tamanhos:
+  sm → w-4 h-4 border-2
+  md → w-6 h-6 border-2
+  lg → w-8 h-8 border-[3px]
+  xl → w-10 h-10 border-4
+--&gt;</span>
+
+<span class="cm">&lt;!-- Cor no escuro (fundo dark) --&gt;</span>
+<span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"... border-white/30
+             border-t-white"</span><span class="tag">&gt;&lt;/span&gt;</span>
+
+<span class="cm">&lt;!-- Dentro de botão loading --&gt;</span>
+<span class="tag">&lt;button</span> <span class="at">disabled</span> <span class="at">aria-busy</span>=<span class="val">"true"</span>
+        <span class="at">class</span>=<span class="val">"inline-flex items-center gap-2
+               ... opacity-70 cursor-wait"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span</span> <span class="at">role</span>=<span class="val">"status"</span> <span class="at">aria-label</span>=<span class="val">"Enviando"</span>
+        <span class="at">class</span>=<span class="val">"inline-block w-3.5 h-3.5
+               border-2 border-white/30
+               border-t-white
+               rounded-full animate-spin"</span><span class="tag">&gt;&lt;/span&gt;</span>
+  Enviando...
+<span class="tag">&lt;/button&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- A18 LINK -->
+<section id="link">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">A18</span>
+    <div><h2 class="text-2xl font-bold mb-1">Link</h2><p class="text-sm text-zinc-500">Hiperlinks inline com variantes semânticas. Use <code class="mono text-xs bg-zinc-100 px-1">target="_blank"</code> + <code class="mono text-xs bg-zinc-100 px-1">rel="noopener noreferrer"</code> para links externos.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-6">
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Variantes</p>
+        <div class="space-y-3 text-sm">
+          <p>Texto com <a href="#" class="text-zinc-900 underline underline-offset-2 decoration-zinc-400 hover:decoration-zinc-900 transition-colors">link padrão</a> embutido.</p>
+          <p>Texto com <a href="#" class="text-blue-600 underline underline-offset-2 decoration-blue-300 hover:decoration-blue-600 transition-colors">link azul</a> embutido.</p>
+          <p>Texto com <a href="#" class="text-zinc-500 underline underline-offset-2 decoration-zinc-300 hover:text-zinc-900 hover:decoration-zinc-500 transition-colors">link muted</a> embutido.</p>
+          <p>Texto com <a href="#" class="text-red-600 underline underline-offset-2 decoration-red-300 hover:decoration-red-600 transition-colors">link destrutivo</a> embutido.</p>
+        </div>
+      </div>
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Standalone com ícone</p>
+        <div class="flex flex-col gap-2">
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm text-zinc-700 hover:text-zinc-900 font-medium transition-colors group">
+            Ver documentação
+            <svg class="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">
+            Link externo
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <a href="#" class="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            Voltar
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Inline padrão --&gt;</span>
+<span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"#"</span>
+   <span class="at">class</span>=<span class="val">"text-zinc-900 underline underline-offset-2
+          decoration-zinc-400
+          hover:decoration-zinc-900 transition-colors"</span><span class="tag">&gt;</span>
+  link
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Externo (nova aba) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="at">href</span>=<span class="val">"https://..."</span>
+   <span class="at">target</span>=<span class="val">"_blank"</span>
+   <span class="at">rel</span>=<span class="val">"noopener noreferrer"</span>
+   <span class="at">class</span>=<span class="val">"inline-flex items-center gap-1.5
+          text-sm text-blue-600 hover:text-blue-800
+          font-medium transition-colors"</span><span class="tag">&gt;</span>
+  Recurso externo
+  <span class="cm">&lt;!-- SVG external-link 14×14 --&gt;</span>
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="cm">&lt;!-- Com chevron (nav inline) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="at">class</span>=<span class="val">"inline-flex items-center gap-1.5
+          text-sm text-zinc-700 hover:text-zinc-900
+          font-medium transition-colors group"</span><span class="tag">&gt;</span>
+  Ver mais
+  <span class="cm">&lt;!-- SVG chevron group-hover:text-zinc-700 --&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- A19 RANGE SLIDER -->
+<section id="range">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">A19</span>
+    <div><h2 class="text-2xl font-bold mb-1">Range / Slider</h2><p class="text-sm text-zinc-500">Entrada numérica contínua. Combina com <code class="mono text-xs bg-zinc-100 px-1">&lt;label&gt;</code> e valor exibido. Estilize via <code class="mono text-xs bg-zinc-100 px-1">accent-color</code> nativo.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-7">
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <label for="r1" class="text-sm font-medium text-zinc-700">Volume</label>
+          <span class="mono text-xs text-zinc-500">72%</span>
+        </div>
+        <input id="r1" type="range" min="0" max="100" value="72" class="w-full h-1.5 bg-zinc-200 appearance-none cursor-pointer accent-zinc-900 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-zinc-900 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-sm" />
+        <div class="flex justify-between mono text-[10px] text-zinc-400">
+          <span>0%</span><span>100%</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <label for="r2" class="text-sm font-medium text-zinc-700">Orçamento máximo</label>
+          <span class="mono text-xs text-zinc-500">R$ 2.500</span>
+        </div>
+        <input id="r2" type="range" min="500" max="10000" value="2500" step="100" class="w-full h-1.5 bg-zinc-200 appearance-none cursor-pointer accent-zinc-900 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:bg-zinc-900 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full" />
+      </div>
+      <div class="flex flex-col gap-3">
+        <label for="r3" class="text-sm font-medium text-zinc-400">Desabilitado</label>
+        <input id="r3" type="range" min="0" max="100" value="40" disabled class="w-full h-1.5 bg-zinc-100 appearance-none cursor-not-allowed opacity-50" />
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex flex-col gap-3"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex items-center justify-between"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="at">for</span>=<span class="val">"range"</span>
+           <span class="at">class</span>=<span class="val">"text-sm font-medium text-zinc-700"</span><span class="tag">&gt;</span>
+      Label
+    <span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"mono text-xs text-zinc-500"</span><span class="tag">&gt;</span>72%<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;input</span> <span class="at">id</span>=<span class="val">"range"</span> <span class="at">type</span>=<span class="val">"range"</span>
+         <span class="at">min</span>=<span class="val">"0"</span> <span class="at">max</span>=<span class="val">"100"</span> <span class="at">value</span>=<span class="val">"72"</span>
+         <span class="at">class</span>=<span class="val">"w-full h-1.5 bg-zinc-200
+                appearance-none cursor-pointer
+                accent-zinc-900
+                [&amp;::-webkit-slider-thumb]:w-4
+                [&amp;::-webkit-slider-thumb]:h-4
+                [&amp;::-webkit-slider-thumb]:appearance-none
+                [&amp;::-webkit-slider-thumb]:bg-zinc-900
+                [&amp;::-webkit-slider-thumb]:border-2
+                [&amp;::-webkit-slider-thumb]:border-white
+                [&amp;::-webkit-slider-thumb]:rounded-full"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex justify-between
+              mono text-[10px] text-zinc-400"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;span&gt;</span>0%<span class="tag">&lt;/span&gt;</span><span class="tag">&lt;span&gt;</span>100%<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- A20 CODE BLOCK -->
+<section id="codeblock">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">A20</span>
+    <div><h2 class="text-2xl font-bold mb-1">Code Block</h2><p class="text-sm text-zinc-500">Bloco de código com header de linguagem e botão copiar. Use <code class="mono text-xs bg-zinc-100 px-1">&lt;pre&gt;&lt;code&gt;</code> para semântica correta.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-4">
+      <div class="border border-zinc-200 overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2 bg-zinc-100 border-b border-zinc-200">
+          <span class="mono text-[10px] font-semibold text-zinc-500 uppercase tracking-widest">JavaScript</span>
+          <button type="button" class="mono text-[10px] text-zinc-400 hover:text-zinc-700 transition-colors">copiar</button>
+        </div>
+        <pre class="bg-zinc-950 p-4 overflow-x-auto m-0"><code class="mono text-xs text-zinc-300 leading-relaxed">async function fetchUser(id) {
+  const res = await fetch(`/api/users/${id}`);
+  if (!res.ok) throw new Error('Not found');
+  return res.json();
+}</code></pre>
+      </div>
+      <div class="border border-zinc-200 overflow-hidden">
+        <div class="flex items-center justify-between px-4 py-2 bg-zinc-100 border-b border-zinc-200">
+          <span class="mono text-[10px] font-semibold text-zinc-500 uppercase tracking-widest">Bash</span>
+          <button type="button" class="mono text-[10px] text-zinc-400 hover:text-zinc-700 transition-colors">copiar</button>
+        </div>
+        <pre class="bg-zinc-950 p-4 overflow-x-auto m-0"><code class="mono text-xs text-zinc-300 leading-relaxed"><span class="text-green-400">$</span> npm install &amp;&amp; npm run dev</code></pre>
+      </div>
+      <div class="border border-zinc-200 overflow-hidden">
+        <pre class="bg-zinc-950 p-4 overflow-x-auto m-0 text-xs"><code class="mono text-zinc-300 leading-relaxed"><span class="text-purple-400">const</span> <span class="text-blue-300">x</span> = <span class="text-yellow-300">42</span>;</code></pre>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Com header --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"border border-zinc-200 overflow-hidden"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex items-center justify-between
+              px-4 py-2 bg-zinc-100
+              border-b border-zinc-200"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;span</span> <span class="at">class</span>=<span class="val">"mono text-[10px] font-semibold
+               text-zinc-500 uppercase tracking-widest"</span><span class="tag">&gt;</span>
+      JavaScript
+    <span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;button</span> <span class="at">type</span>=<span class="val">"button"</span>
+            <span class="at">class</span>=<span class="val">"mono text-[10px] text-zinc-400
+                   hover:text-zinc-700 transition-colors"</span><span class="tag">&gt;</span>
+      copiar
+    <span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;pre</span> <span class="at">class</span>=<span class="val">"bg-zinc-950 p-4 overflow-x-auto m-0"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;code</span> <span class="at">class</span>=<span class="val">"mono text-xs
+                 text-zinc-300 leading-relaxed"</span><span class="tag">&gt;</span>
+      ...
+    <span class="tag">&lt;/code&gt;</span>
+  <span class="tag">&lt;/pre&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Sem header (inline simples) --&gt;</span>
+<span class="tag">&lt;pre</span> <span class="at">class</span>=<span class="val">"bg-zinc-950 p-4
+          overflow-x-auto border border-zinc-800"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;code</span> <span class="at">class</span>=<span class="val">"mono text-xs text-zinc-300"</span><span class="tag">&gt;</span>
+    código aqui
+  <span class="tag">&lt;/code&gt;</span>
+<span class="tag">&lt;/pre&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- A21 STEPPED PROGRESS -->
+<section id="steppedprogress">
+  <div class="flex items-start gap-4 mb-8">
+    <span class="mono text-xs text-zinc-400 pt-1">A21</span>
+    <div><h2 class="text-2xl font-bold mb-1">Stepped Progress</h2><p class="text-sm text-zinc-500">Barra de progresso por etapas discretas. Variante do A15 para fluxos multi-step.</p></div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-200">
+    <div class="bg-white p-8 space-y-8">
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-4">Segmentos</p>
+        <div class="flex gap-1" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="4" aria-label="Etapa 2 de 4">
+          <div class="flex-1 h-1.5 bg-zinc-900"></div>
+          <div class="flex-1 h-1.5 bg-zinc-900"></div>
+          <div class="flex-1 h-1.5 bg-zinc-200"></div>
+          <div class="flex-1 h-1.5 bg-zinc-200"></div>
+        </div>
+        <p class="mono text-[10px] text-zinc-400 mt-2">Etapa 2 de 4</p>
+      </div>
+      <div>
+        <p class="mono text-[10px] font-semibold uppercase tracking-widest text-zinc-400 mb-5">Com ícones e labels</p>
+        <div class="flex items-start">
+          <div class="flex flex-col items-center gap-1 flex-1">
+            <div class="w-7 h-7 bg-zinc-900 flex items-center justify-center flex-shrink-0">
+              <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <p class="text-[10px] font-medium text-zinc-900 text-center">Conta</p>
+          </div>
+          <div class="flex-1 h-px bg-zinc-900 mt-3.5"></div>
+          <div class="flex flex-col items-center gap-1 flex-1">
+            <div class="w-7 h-7 bg-zinc-900 flex items-center justify-center flex-shrink-0 ring-2 ring-zinc-900 ring-offset-2">
+              <span class="mono text-[10px] font-bold text-white">2</span>
+            </div>
+            <p class="text-[10px] font-semibold text-zinc-900 text-center">Plano</p>
+          </div>
+          <div class="flex-1 h-px bg-zinc-200 mt-3.5"></div>
+          <div class="flex flex-col items-center gap-1 flex-1">
+            <div class="w-7 h-7 bg-white border-2 border-zinc-200 flex items-center justify-center flex-shrink-0">
+              <span class="mono text-[10px] font-bold text-zinc-400">3</span>
+            </div>
+            <p class="text-[10px] text-zinc-400 text-center">Pagamento</p>
+          </div>
+          <div class="flex-1 h-px bg-zinc-200 mt-3.5"></div>
+          <div class="flex flex-col items-center gap-1 flex-1">
+            <div class="w-7 h-7 bg-white border-2 border-zinc-200 flex items-center justify-center flex-shrink-0">
+              <span class="mono text-[10px] font-bold text-zinc-400">4</span>
+            </div>
+            <p class="text-[10px] text-zinc-400 text-center">Confirmar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative cb p-6 overflow-auto">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+<pre><span class="cm">&lt;!-- Segmentos simples --&gt;</span>
+<span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex gap-1"</span>
+     <span class="at">role</span>=<span class="val">"progressbar"</span>
+     <span class="at">aria-valuenow</span>=<span class="val">"2"</span> <span class="at">aria-valuemin</span>=<span class="val">"0"</span>
+     <span class="at">aria-valuemax</span>=<span class="val">"4"</span>
+     <span class="at">aria-label</span>=<span class="val">"Etapa 2 de 4"</span><span class="tag">&gt;</span>
+  <span class="cm">&lt;!-- Concluído → bg-zinc-900 --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex-1 h-1.5 bg-zinc-900"</span><span class="tag">&gt;&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex-1 h-1.5 bg-zinc-900"</span><span class="tag">&gt;&lt;/div&gt;</span>
+  <span class="cm">&lt;!-- Pendente → bg-zinc-200 --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex-1 h-1.5 bg-zinc-200"</span><span class="tag">&gt;&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="at">class</span>=<span class="val">"flex-1 h-1.5 bg-zinc-200"</span><span class="tag">&gt;&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cm">&lt;!-- Com ícones:
+  Concluído: bg-zinc-900 + SVG check
+  Atual:     bg-zinc-900 + ring-2 ring-offset-2
+  Pendente:  border-2 border-zinc-200 + número
+  Conector concluído: bg-zinc-900 h-px mt-3.5
+  Conector pendente:  bg-zinc-200 h-px mt-3.5
+--&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="border-t border-zinc-200 mt-16">
